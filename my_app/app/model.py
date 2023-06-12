@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
-class Token(BaseModel):
+class TokenModel(BaseModel):
     macAddr: str
     Token: str
