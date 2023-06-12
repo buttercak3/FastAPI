@@ -1,12 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
 from model import TokenModel
 from database import (
     fetch_one_Token,
     create_macAddr,
 )
-
-app = FastAPI()
 
 @app.get("/")
 async def home():
