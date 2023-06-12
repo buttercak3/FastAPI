@@ -1,4 +1,4 @@
-from model import Token
+from model import TokenModel
 #MongoDB driver
 import motor.motor_asyncio
 
@@ -17,5 +17,5 @@ async def fetch_one_Token(macAddr):
 
 async def create_macAddr(macAddr):
     document = macAddr
-    result = await collection.inser_one(document)
+    result = await collection.insert_one(document)
     return document

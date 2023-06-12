@@ -1,11 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from model import (
-    TokenModel
-)
+from model import TokenModel
 from database import (
     fetch_one_Token,
-    create_macAddr
+    create_macAddr,
 )
 
 app = FastAPI()
