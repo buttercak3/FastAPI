@@ -1,1 +1,6 @@
-# FastAPI2
+# FastAPI
+
+```python
+
+/home
+```
