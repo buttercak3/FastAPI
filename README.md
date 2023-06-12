@@ -1,6 +1,7 @@
 # FastAPI
 
-https://fastapi.hubi.club/
+https://fastapi.hubi.club
+
 https://fastapi.hubi.club/docs
 
 ## Virtual environment erstellen:
