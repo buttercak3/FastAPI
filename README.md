@@ -1,6 +1,9 @@
 # FastAPI
 
 ```python
+https://fastapi.hubi.club/home
+```
 
-/home
+```python
+https://fastapi.hubi.club/docs
 ```
