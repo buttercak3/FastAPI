@@ -1,18 +1,10 @@
 version: '3.8'
 services:
-  mongodata:
-    image: mongo
-    expose:
-      - "27017:27017"
-  
   fastapi:
     build: ./my_app
     command: |
       bash -c 'gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:5000'
     ports:
       - "5000:5000"
-    environment:
-      - DATABASE_URL="mongodb://mongodata:27017"
-    depends_on:
-      - mongodata
     restart: unless-stopped
+    network_mode: bridge
