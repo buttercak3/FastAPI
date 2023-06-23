@@ -11,7 +11,7 @@ https://fastapi.hubi.club/docs
 
 ## Make .ps1 executable:
 ```powershell
-cd 'C:\Users\Sebi\Documents\4tes Semester\Cloud Computing\FastAPI\'
+cd 'C:\Users\Max\Documents\FastAPI\'
 Set-ExecutionPolicy RemoteSigned
 
 Set-ExecutionPolicy Restricted #if Activate.ps1 is no longer needed
