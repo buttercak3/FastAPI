@@ -14,15 +14,6 @@ async def fetch_one_Token(macAddr):
     document = await collection.find_one({"macAddr":macAddr})
     return document
 
-# async def fetch_one_macAddr(macAddr):
-#     document = collection.find_one({"macAddr":macAddr})
-#     return document
-
-# async def create_macAddr(macAddr):
-#     document = macAddr
-#     result = await collection.insert_one(dict(document))
-#     return document
-
 
 async def create_macAddr(ClientMacAddr):
     document = ClientMacAddr
