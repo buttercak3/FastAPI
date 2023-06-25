@@ -1,0 +1,81 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      mongonet:
+        ipv4_address: 172.0.22.2
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    networks:
+      mongonet:
+        ipv4_address: 172.0.22.3
+
+  influxdb:
+    image: 'influxdb:2.7.1-alpine'
+    restart: always
+    ports:
+      - 8086:8086
+    environment:
+      INFLUX_CONFIGS_PATH: /etc/influxdb2/influx-configs
+      INFLUXDB_ADMIN_PASSWORD: IchMag123
+      INFLUXDB_ADMIN_USER: admin
+    volumes:
+      - /var/lib/influxdb2:/home/cloudcomputing/influxdb2/var
+      - /etc/influxdb2:/home/cloudcomputing/influxdb2/etc
+    networks:
+      influxnet:
+        ipv4_address: 172.0.23.2
+
+  grafana:
+    image: 'grafana/grafana:main'
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      influxnet:
+        ipv4_address: 172.0.23.3
+
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: always
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      mongonet:
+        ipv4_address: 172.0.22.1
+      influxnet:
+        ipv4_address: 172.0.23.1
+
+
+networks:
+  mongonet:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.0.22.0/24"
+
+  influxnet:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.0.23.0/24"
