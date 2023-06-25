@@ -41,8 +41,8 @@ async def get_token_by_mac(macAddr: str):
     raise HTTPException(404, f"This MAC-Address: {macAddr} does not exist")
 
 
-@app.post("/add/", response_model=TokenModel)
-async def post_mac(ClientMacAddr: TokenModel):
+@app.post("/add/", response_model=AddMacModel)
+async def post_mac(ClientMacAddr: AddMacModel):
     response = await create_macAddr(ClientMacAddr.dict())
     if response:
         return response
